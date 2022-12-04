@@ -7,14 +7,26 @@ class SelecoesSpider(scrapy.Spider):
     name = "selecoes"
     start_urls = ["https://www.transfermarkt.com/2022-world-cup/teilnehmer/pokalwettbewerb/WM22/"]
 
+    def get_xpath_clubs(self, id_code):
+      return '//div[@id="yw' + str(id_code) +'"]//table[@class="items"]//tr//td[@class="zentriert no-border-rechts"]//a'
+
     def parse(self, response):
         base_url = "https://www.transfermarkt.com"
+        XPATH_NATIONAL_TEAMS_ROUND_OF_16 = self.get_xpath_clubs(1)
+        XPATH_NATIONAL_TEAMS_ELIMINATED = self.get_xpath_clubs(2)
+        print(XPATH_NATIONAL_TEAMS_ROUND_OF_16)
+        print(XPATH_NATIONAL_TEAMS_ELIMINATED)
 
-        XPATH_CLUBS = '//div[@id="yw1"]//table[@class="items"]//tr//td[@class="zentriert no-border-rechts"]//a'
-        for national_team_page in response.xpath(XPATH_CLUBS):
+        for national_team_page in response.xpath(XPATH_NATIONAL_TEAMS_ROUND_OF_16):
           link_to_page = national_team_page.xpath('@href').extract()[0]
           url = base_url + link_to_page
           yield scrapy.Request(url=url, callback=self.fetch_national_team_page)
+
+        for national_team_page in response.xpath(XPATH_NATIONAL_TEAMS_ELIMINATED):
+          link_to_page = national_team_page.xpath('@href').extract()[0]
+          url = base_url + link_to_page
+          yield scrapy.Request(url=url, callback=self.fetch_national_team_page)
+        
           
     def fetch_national_team_page(self, response):
       XPATH_PLAYERS = '//div[@id="yw1"]//table[@class="items"]//tr'
