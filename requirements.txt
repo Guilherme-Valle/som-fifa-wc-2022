@@ -1,0 +1,5 @@
+itemadapter==0.4.0
+pandas==1.4.1
+pyrsistent==0.15.5
+Scrapy==2.5.1
+minisom==2.3.0
