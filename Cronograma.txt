@@ -5,10 +5,20 @@ Membros:
 
 Cronograma vídeo:
     1-Apresentação Membros;
+
     2-Apresentação da situação escolhida para a execução do algoritmo;
+
     3-Explicação do por quê foi escolhida e qual a finalidade;
+
     4-Explicar como foi feita a busca dos dados utilizados no estudo;
-    5-Apresentar a execução do pré-processamento;
-    6-Explicitar a aplicação dos modelos;
+        https://www.transfermarkt.com/2022-world-cup/teilnehmer/pokalwettbewerb/WM22
+
+    5-Apresentar a execução do pré-processamento através do uso do minisom e pandas;
+        https://pypi.org/project/MiniSom/
+        https://pandas.pydata.org/
+
+    6-Explicar a aplicação dos modelos;
+
     7-Demonstrar a validação dos resultados;
+
     8-Agradecer a atenção de todos;
